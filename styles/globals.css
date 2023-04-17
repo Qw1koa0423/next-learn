@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    h2 {
+        @apply text-2xl font-bold text-gray-800;
+    }
+}
+@layer utilities {
+    .inherit-font {
+        font: inherit;
+    }
+}
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
 
 * {
