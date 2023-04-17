@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-17 14:36:32
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-17 15:45:13
+ * @LastEditTime: 2023-04-17 17:06:28
  * @FilePath: \next-learn\tailwind.config.js
  * @Description: tailwindcss 配置文件
  * 
@@ -23,8 +23,11 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       boxShadow: {
-        'event-item-shadow': '0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2)'
+        'event-item': '0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2)',
+        'button': '0 1px 6px rgba(0, 0, 0, 0.2)',
       }
+
+
     },
   },
   plugins: [],
