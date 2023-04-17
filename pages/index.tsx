@@ -8,7 +8,7 @@
  *
  * Copyright (c) 2023 by 遥在科技, All Rights Reserved.
  */
-import EventList from '@/components/EventList'
+import EventList from '@/components/events/EventList'
 import { getFeaturedEvents } from '@/data/dummy-data'
 export default function HomePage() {
     const featuredEvents = getFeaturedEvents()
