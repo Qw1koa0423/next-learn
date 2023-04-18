@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-17 15:22:31
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-17 17:52:42
+ * @LastEditTime: 2023-04-18 13:01:01
  * @FilePath: \next-learn\components\events\EventItem.tsx
  * @Description:
  *
@@ -56,7 +56,7 @@ export default function EventItem(props: EventItemProps) {
                 </div>
                 <div className=" flex flex-col p-4 md:flex-row md:justify-end">
                     <Button link={exploreLink}>
-                        <span>Explore Event</span>
+                        <span>查看事件</span>
                         <span className="ml-1  inline-flex justify-center items-center">
                             <IconArrowNarrowRight className="w-5 h-5" />
                         </span>
