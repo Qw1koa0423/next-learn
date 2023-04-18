@@ -22,6 +22,20 @@ export async function getStaticProps() {
     const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
     const jsonData = await fs.readFileSync(filePath, 'utf-8')
     const data = JSON.parse(jsonData)
+    if (!data) {
+        return {
+            /** 重定向 */
+            redirect: {
+                destination: '/no-data',
+            },
+        }
+    }
+    if (data.products.length === 0) {
+        return {
+            /** 返回404页面 */
+            notFound: true,
+        }
+    }
     return {
         props: {
             products: data.products,
