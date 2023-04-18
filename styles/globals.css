@@ -11,6 +11,9 @@
     .inherit-font {
         font: inherit;
     }
+    .text-shadow-h1 {
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    }
 }
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
 
