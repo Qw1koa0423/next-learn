@@ -1,10 +1,11 @@
+import { useRef } from 'react'
 import Button from '../ui/Button'
 
 /*
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-18 11:30:13
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-18 11:52:53
+ * @LastEditTime: 2023-04-18 13:32:10
  * @FilePath: \next-learn\components\events\EventsSearch.tsx
  * @Description:
  *
@@ -15,11 +16,21 @@ interface EventsSearchProps {
 }
 
 export default function EventsSearch(props: EventsSearchProps) {
+    const { onSearch } = props
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const selectedYear = yearInputRef.current?.value
+        const selectedMonth = monthInputRef.current?.value
+        onSearch(selectedYear!, selectedMonth!)
+    }
+    const yearInputRef = useRef<HTMLSelectElement>(null)
+    const monthInputRef = useRef<HTMLSelectElement>(null)
     return (
         <form className=" my-8 mx-auto shadow-form p-4 bg-white rounded-md w-[90%] max-w-[40rem] flex justify-between flex-col gap-4 md:flex-row">
             <div className=" w-full flex gap-4 flex-col md:w-4/5 md:flex-row">
                 <div className=" flex-1 flex gap-4 items-center justify-between">
                     <select
+                        ref={yearInputRef}
                         className="inherit-font bg-white rounded-md w-[70%] p-1 md:w-full"
                         id="year"
                     >
@@ -32,6 +43,7 @@ export default function EventsSearch(props: EventsSearchProps) {
                 </div>
                 <div className=" flex-1 flex gap-4 items-center justify-between">
                     <select
+                        ref={monthInputRef}
                         className="inherit-font bg-white rounded-md w-[70%] p-1 md:w-full"
                         id="month"
                     >
@@ -53,7 +65,10 @@ export default function EventsSearch(props: EventsSearchProps) {
                     </label>
                 </div>
             </div>
-            <Button className=" w-full inherit-font py-1 px-2 bg-[#03be9f] border-[1px] border-solid border-[#03be9f] text-[#dafff7] rounded-[4px] md:w-1/5">
+            <Button
+                onClick={submitHandler}
+                className=" w-full inherit-font py-1 px-2 bg-[#03be9f] border-[1px] border-solid border-[#03be9f] text-[#dafff7] rounded-[4px] md:w-1/5"
+            >
                 搜索
             </Button>
         </form>
