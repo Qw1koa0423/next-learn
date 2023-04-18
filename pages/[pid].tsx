@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-18 15:17:50
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-18 16:21:32
+ * @LastEditTime: 2023-04-18 16:27:26
  * @FilePath: \next-learn\pages\[pid].tsx
  * @Description:
  *
@@ -21,9 +21,9 @@ interface ProductDetailPageProps {
 }
 export default function ProductDetailPage(props: ProductDetailPageProps) {
     const { loadedProduct } = props
-    // if (!loadedProduct) {
-    //     return <p>加载中...</p>
-    // }
+    if (!loadedProduct) {
+        return <p>加载中...</p>
+    }
     return (
         <>
             <h1>{loadedProduct.title}</h1>
@@ -60,6 +60,6 @@ export async function getStaticPaths() {
         //当fallback为true时，如果在paths中没有匹配到的路径，会自动渲染一个空白页面，然后再次请求数据，渲染页面
         //当fallback为false时，如果在paths中没有匹配到的路径，会返回404页面
         //当fallback为blocking时，如果在paths中没有匹配到的路径，会自动渲染一个空白页面，然后再次请求数据，渲染页面，但是会等待数据请求完成后再渲染页面,这样可以避免页面闪烁
-        fallback: 'blocking',
+        fallback: false,
     }
 }
