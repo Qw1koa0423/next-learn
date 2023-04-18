@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-18 15:17:50
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-18 16:13:40
+ * @LastEditTime: 2023-04-18 16:21:32
  * @FilePath: \next-learn\pages\[pid].tsx
  * @Description:
  *
@@ -31,14 +31,18 @@ export default function ProductDetailPage(props: ProductDetailPageProps) {
         </>
     )
 }
-export async function getStaticProps(context: GetStaticPropsContext) {
-    const { params } = context
-    const productId = params?.pid
+async function getData() {
     const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
     const jsonData = await fs.readFileSync(filePath, 'utf-8')
     const data = JSON.parse(jsonData) as {
         products: ProductsType[]
     }
+    return data
+}
+export async function getStaticProps(context: GetStaticPropsContext) {
+    const { params } = context
+    const productId = params?.pid
+    const data = await getData()
     const product = data.products.find((item) => item.id === productId)
     return {
         props: {
@@ -48,24 +52,11 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export async function getStaticPaths() {
+    const data = await getData()
+    const ids = data.products.map((item) => item.id)
+    const pathWithParams = ids.map((id) => ({ params: { pid: id } }))
     return {
-        paths: [
-            {
-                params: {
-                    pid: 'p1',
-                },
-            },
-            // {
-            //     params: {
-            //         pid: 'p2',
-            //     },
-            // },
-            // {
-            //     params: {
-            //         pid: 'p3',
-            //     },
-            // },
-        ],
+        paths: pathWithParams,
         //当fallback为true时，如果在paths中没有匹配到的路径，会自动渲染一个空白页面，然后再次请求数据，渲染页面
         //当fallback为false时，如果在paths中没有匹配到的路径，会返回404页面
         //当fallback为blocking时，如果在paths中没有匹配到的路径，会自动渲染一个空白页面，然后再次请求数据，渲染页面，但是会等待数据请求完成后再渲染页面,这样可以避免页面闪烁
