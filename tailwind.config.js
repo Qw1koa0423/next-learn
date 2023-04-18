@@ -25,6 +25,7 @@ module.exports = {
       boxShadow: {
         'event-item': '0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2)',
         'button': '0 1px 6px rgba(0, 0, 0, 0.2)',
+        'logistics': '0 2px 6px rgba(0, 0, 0, 0.2)',
       }
 
 
