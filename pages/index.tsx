@@ -18,6 +18,7 @@ export default function HomePage(props: HomePageProps) {
     )
 }
 export async function getStaticProps() {
+    console.log('Re-Generating...')
     const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
     const jsonData = await fs.readFileSync(filePath, 'utf-8')
     const data = JSON.parse(jsonData)
@@ -25,5 +26,7 @@ export async function getStaticProps() {
         props: {
             products: data.products,
         },
+        /** 重新渲染的时间10s,每10s重新渲染一次,低于这个时间不会打印出来 Re-Generating...*/
+        revalidate: 10,
     }
 }
