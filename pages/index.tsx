@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 interface HomePageProps {
     products: {
         id: string
@@ -16,22 +18,12 @@ export default function HomePage(props: HomePageProps) {
     )
 }
 export async function getStaticProps() {
+    const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json')
+    const jsonData = await fs.readFileSync(filePath, 'utf-8')
+    const data = JSON.parse(jsonData)
     return {
         props: {
-            products: [
-                {
-                    id: 'p1',
-                    title: '结果 1',
-                },
-                {
-                    id: 'p2',
-                    title: '结果 2',
-                },
-                {
-                    id: 'p3',
-                    title: '结果 3',
-                },
-            ],
+            products: data.products,
         },
     }
 }

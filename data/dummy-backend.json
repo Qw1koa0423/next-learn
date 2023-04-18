@@ -1,0 +1,19 @@
+{
+    "products": [
+        {
+            "id": "p1",
+            "title": "产品 1",
+            "description": "这是产品 1"
+        },
+        {
+            "id": "p2",
+            "title": "产品 2",
+            "description": "这是产品 2"
+        },
+        {
+            "id": "p3",
+            "title": "产品 3",
+            "description": "这是产品 3"
+        }
+    ]
+}
