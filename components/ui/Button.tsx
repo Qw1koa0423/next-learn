@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-17 16:49:21
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-18 11:48:35
+ * @LastEditTime: 2023-04-18 13:21:07
  * @FilePath: \next-learn\components\ui\Button.tsx
  * @Description:
  *
@@ -13,7 +13,7 @@ import Link from 'next/link'
 interface ButtonProps {
     children: React.ReactNode
     link?: string
-    onClick?: () => void
+    onClick?: (e: any) => void
     className?: string
 }
 
