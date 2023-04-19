@@ -1,38 +1,46 @@
 import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 
 interface ISale {
     id: string
     username: string
     volume: number
 }
+interface LastSalesPageProps {
+    sales: ISale[]
+}
 
-export default function LastSalesPage() {
-    const [sales, setSales] = useState<ISale[]>([])
-    const [isloading, setIsLoading] = useState(false)
+export default function LastSalesPage(props: LastSalesPageProps) {
+    const { sales: isales } = props
+    const [sales, setSales] = useState<ISale[]>(isales)
+    // const [isloading, setIsLoading] = useState(false)
+    // useEffect(() => {
+    //     setIsLoading(true)
+
+    //     }, [])
+
+    const { data, error } = useSWR(
+        'https://nextjs-course-234b1-default-rtdb.firebaseio.com/sales.json',
+        (url) => fetch(url).then((res) => res.json())
+    )
     useEffect(() => {
-        setIsLoading(true)
-        fetch(
-            'https://nextjs-course-234b1-default-rtdb.firebaseio.com/sales.json'
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                const transformedSales: ISale[] = []
-                for (const key in data) {
-                    transformedSales.push({
-                        id: key,
-                        username: data[key].username,
-                        volume: data[key].volume,
-                    })
-                }
-                setSales(transformedSales)
-                setIsLoading(false)
-            })
-    }, [])
-    if (isloading) {
-        return <p>加载中...</p>
+        if (data) {
+            const transformedSales: ISale[] = []
+            for (const key in data) {
+                transformedSales.push({
+                    id: key,
+                    username: data[key].username,
+                    volume: data[key].volume,
+                })
+            }
+            setSales(transformedSales)
+        }
+    }, [data])
+    if (error) {
+        return <p>获取数据失败</p>
     }
-    if (!sales) {
-        return <p>没有数据</p>
+    if (!data && !sales) {
+        return <p>加载中...</p>
     }
     return (
         <ul>
@@ -43,4 +51,46 @@ export default function LastSalesPage() {
             ))}
         </ul>
     )
+}
+export async function getStaticProps() {
+    /** 第一种写法 */
+    // return fetch(
+    //     'https://nextjs-course-234b1-default-rtdb.firebaseio.com/sales.json'
+    // )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         const transformedSales: ISale[] = []
+    //         for (const key in data) {
+    //             transformedSales.push({
+    //                 id: key,
+    //                 username: data[key].username,
+    //                 volume: data[key].volume,
+    //             })
+    //         }
+    //         return {
+    //             props: {
+    //                 sales: transformedSales,
+    //                 revalidate: 10,
+    //             },
+    //         }
+    //     })
+    /** 第二种(推荐) */
+    const response = await fetch(
+        'https://nextjs-course-234b1-default-rtdb.firebaseio.com/sales.json'
+    )
+    const data = await response.json()
+    const transformedSales: ISale[] = []
+    for (const key in data) {
+        transformedSales.push({
+            id: key,
+            username: data[key].username,
+            volume: data[key].volume,
+        })
+    }
+    return {
+        props: {
+            sales: transformedSales,
+            revalidate: 10,
+        },
+    }
 }
