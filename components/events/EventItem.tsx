@@ -12,6 +12,7 @@ import Button from '../ui/Button'
 import { IconCalendarEvent } from '@tabler/icons-react'
 import { IconMapPin } from '@tabler/icons-react'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
+import Image from 'next/image'
 interface EventItemProps {
     event: {
         id: string
@@ -33,7 +34,7 @@ export default function EventItem(props: EventItemProps) {
     const exploreLink = `/events/${id}`
     return (
         <li className="shadow-event-item rounded-lg overflow-hidden bg-white m-4 flex flex-col gap-4 md:flex-row">
-            <img
+            <Image
                 src={'/' + image}
                 alt={title}
                 className="w-full object-cover h-40 md:w-2/5  md:h-56"
