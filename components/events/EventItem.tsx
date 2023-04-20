@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-17 15:22:31
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-18 13:01:01
+ * @LastEditTime: 2023-04-20 17:28:38
  * @FilePath: \next-learn\components\events\EventItem.tsx
  * @Description:
  *
@@ -37,6 +37,8 @@ export default function EventItem(props: EventItemProps) {
             <Image
                 src={'/' + image}
                 alt={title}
+                width={250}
+                height={160}
                 className="w-full object-cover h-40 md:w-2/5  md:h-56"
             />
             <div className="w-full px-4 py-0 text-center md:w-3/5 p-0 md:text-left">

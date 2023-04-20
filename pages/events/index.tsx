@@ -13,6 +13,7 @@ import EventsSearch from '@/components/events/EventsSearch'
 import { getAllEvents } from '@/data/dummy-data'
 import { useRouter } from 'next/router'
 import { EnventProps } from '@/types'
+import Head from 'next/head'
 interface AllEventsPageProps {
     events: EnventProps[]
 }
@@ -26,6 +27,13 @@ export default function AllEventsPage(props: AllEventsPageProps) {
     }
     return (
         <>
+            <Head>
+                <title>我的所有活动</title>
+                <meta
+                    name="description"
+                    content="找到很多让你不断发展的伟大事件。。。"
+                />
+            </Head>
             <EventsSearch onSearch={findEventsHandler} />
             <EventList items={events} />
         </>

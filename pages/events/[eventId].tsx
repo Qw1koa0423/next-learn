@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-17 15:18:50
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-19 10:58:59
+ * @LastEditTime: 2023-04-20 17:24:00
  * @FilePath: \next-learn\pages\events\[eventId].tsx
  * @Description: 事件详细信息页面
  *
@@ -16,10 +16,11 @@ import {
 import EventSummary from '@/components/event-detail/EventSummary'
 import EventLogistics from '@/components/event-detail/EventLogistics'
 import EventContent from '@/components/event-detail/EventContent'
-import ErrorAlert from '@/components/ui/ErrorAlert'
 import { GetStaticPropsContext } from 'next'
 
 import { EnventProps } from '@/types'
+import Head from 'next/head'
+import Comments from '@/components/input/Comments'
 
 interface EventDetailPageProps {
     selectedEvent: EnventProps
@@ -38,6 +39,13 @@ export default function EventDetailPage(props: EventDetailPageProps) {
     }
     return (
         <>
+        <Head>
+        <title>{event.title}</title>
+        <meta
+          name='description'
+          content={event.description}
+        />
+      </Head>
             <EventSummary title={event.title} />
             <EventLogistics
                 date={event.date}
@@ -48,6 +56,7 @@ export default function EventDetailPage(props: EventDetailPageProps) {
             <EventContent>
                 <p>{event.description}</p>
             </EventContent>
+            <Comments eventId={event.id}/>
         </>
     )
 }
