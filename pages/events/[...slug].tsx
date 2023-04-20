@@ -6,11 +6,12 @@ import ErrorAlert from '@/components/ui/ErrorAlert'
 import { EnventProps } from '@/types'
 import useSWR from 'swr'
 import { useEffect, useState } from 'react'
+import Head from 'next/head'
 /*
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-17 15:18:50
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-20 13:38:56
+ * @LastEditTime: 2023-04-20 14:14:45
  * @FilePath: \next-learn\pages\events\[...slug].tsx
  * @Description: 筛选的事件页面
  *
@@ -19,10 +20,8 @@ import { useEffect, useState } from 'react'
 
 export default function FilteredEventsPage() {
     const router = useRouter()
-    const [loadEvents, setLoadEvents] = useState<EnventProps[]>([])
     const filterData = router.query.slug as string[]
-    console.log('filterData', filterData)
-
+    const [loadEvents, setLoadEvents] = useState<EnventProps[]>()
     const { data, error } = useSWR(
         'https://nextjs-course-234b1-default-rtdb.firebaseio.com/events.json',
         (url) => fetch(url).then((res) => res.json())
@@ -39,8 +38,23 @@ export default function FilteredEventsPage() {
             setLoadEvents(events)
         }
     }, [data])
+    let pageHeadData = (
+        <Head>
+            <title>筛选的事件</title>
+            <meta
+                name="description"
+                content={`筛选所有事件列表`}
+                key="description"
+            />
+        </Head>
+    )
     if (!loadEvents) {
-        return <p className="center">加载中...</p>
+        return (
+            <>
+                {pageHeadData}
+                <p className="center">加载中...</p>
+            </>
+        )
     }
     const filteredYear = filterData[0]
     const filteredMonth = filterData[1]
@@ -53,6 +67,7 @@ export default function FilteredEventsPage() {
             eventDate.getMonth() === numMonth - 1
         )
     })
+
     if (
         isNaN(numYear) ||
         isNaN(numMonth) ||
@@ -64,6 +79,7 @@ export default function FilteredEventsPage() {
     ) {
         return (
             <>
+                {pageHeadData}
                 <ErrorAlert>
                     <p>无效的筛选条件</p>
                 </ErrorAlert>
@@ -78,6 +94,7 @@ export default function FilteredEventsPage() {
     if (!filteredEvents || filteredEvents.length === 0) {
         return (
             <>
+                {pageHeadData}
                 <ErrorAlert>
                     <p>没有找到相关的事件</p>
                 </ErrorAlert>
@@ -88,8 +105,18 @@ export default function FilteredEventsPage() {
         )
     }
     const date = new Date(numYear, numMonth - 1)
+    pageHeadData = (
+        <Head>
+            <title>筛选的事件</title>
+            <meta
+                name="description"
+                content={`所有的事件 ${numMonth}/${numYear}`}
+            />
+        </Head>
+    )
     return (
         <>
+            {pageHeadData}
             <ResultsTitle date={date} />
             <EventList items={filteredEvents} />
         </>
