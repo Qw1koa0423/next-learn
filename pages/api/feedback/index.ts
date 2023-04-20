@@ -2,8 +2,8 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-20 15:04:50
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-20 15:49:13
- * @FilePath: \next-learn\pages\api\feedback.ts
+ * @LastEditTime: 2023-04-20 16:30:13
+ * @FilePath: \next-learn\pages\api\feedback\index.ts
  * @Description:
  *
  * Copyright (c) 2023 by 遥在科技, All Rights Reserved.
