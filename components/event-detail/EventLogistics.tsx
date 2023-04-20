@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-18 09:14:01
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-18 09:50:35
+ * @LastEditTime: 2023-04-20 14:48:50
  * @FilePath: \next-learn\components\event-detail\EventLogistics.tsx
  * @Description:
  *
@@ -36,8 +36,8 @@ function EventLogistics(props: EventLogisticsProps) {
                 <Image
                     src={'/' + image}
                     alt={imageAlt}
-                    width={400}
-                    height={400}
+                    width={800}
+                    height={800}
                     className=" object-cover w-40 h-40 md:h-80 md:w-80"
                 />
             </div>
