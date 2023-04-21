@@ -27,6 +27,7 @@ module.exports = {
         'button': '0 1px 6px rgba(0, 0, 0, 0.2)',
         'logistics': '0 2px 6px rgba(0, 0, 0, 0.2)',
         'form': '0 1px 4px rgba(0, 0, 0, 0.2)',
+        'notification': '0 -3px 6px rgba(0, 0, 0, 0.2)',
       }
 
 
