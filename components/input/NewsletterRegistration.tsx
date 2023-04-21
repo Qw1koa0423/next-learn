@@ -2,21 +2,26 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-20 16:42:01
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-21 09:10:49
+ * @LastEditTime: 2023-04-21 16:16:15
  * @FilePath: \next-learn\components\input\NewsletterRegistration.tsx
  * @Description:
  *
  * Copyright (c) 2023 by 遥在科技, All Rights Reserved.
  */
 
-import { useRef } from 'react'
-
+import { useRef, useContext } from 'react'
+import NotificationContext from '@/store/NotificationContext'
 function NewsletterRegistration() {
     const emailInputRef = useRef<HTMLInputElement>(null)
+    const notificationsCtx = useContext(NotificationContext)
     function registrationHandler(event: any) {
         event.preventDefault()
         const enteredEmail = emailInputRef.current!.value
-
+        notificationsCtx.showNotification({
+            title: '注册中...',
+            message: '正在注册时事通讯.',
+            status: 'pending',
+        })
         // fetch user input (state or refs)
         // optional: validate input
         // send valid data to API
@@ -26,9 +31,29 @@ function NewsletterRegistration() {
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).then((response) =>response.json()).then((data) => {
-            console.log(data)
         })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                return response.json().then((data) => {
+                    throw new Error(data.message || '出错了!')
+                })
+            })
+            .then((data) => {
+                notificationsCtx.showNotification({
+                    title: '注册成功!',
+                    message: '感谢您的注册.',
+                    status: 'success',
+                })
+            })
+            .catch((error) => {
+                notificationsCtx.showNotification({
+                    title: '注册失败!',
+                    message: error.message || '注册失败.',
+                    status: 'error',
+                })
+            })
     }
 
     return (
