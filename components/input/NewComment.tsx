@@ -1,8 +1,21 @@
+/*
+ * @Author: 刘浩奇 liuhaoqi@yaozai.net
+ * @Date: 2023-04-20 16:42:01
+ * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
+ * @LastEditTime: 2023-04-21 09:37:25
+ * @FilePath: \next-learn\components\input\NewComment.tsx
+ * @Description:
+ *
+ * Copyright (c) 2023 by 遥在科技, All Rights Reserved.
+ */
 import { useRef, useState } from 'react'
+import { CommentProps } from '@/types'
+
 interface NewCommentProps {
-    onAddComment: (commentData: any) => void
+    onAddComment: (commentData: Omit<CommentProps, 'id'>) => void
 }
 function NewComment(props: NewCommentProps) {
+    const { onAddComment } = props
     const [isInvalid, setIsInvalid] = useState(false)
 
     const emailInputRef = useRef<HTMLInputElement>(null)
@@ -29,7 +42,7 @@ function NewComment(props: NewCommentProps) {
             return
         }
 
-        props.onAddComment({
+        onAddComment({
             email: enteredEmail,
             name: enteredName,
             text: enteredComment,
@@ -37,7 +50,10 @@ function NewComment(props: NewCommentProps) {
     }
 
     return (
-        <form className=" my-8 mx-auto w-full rounded-md bg-[#03be9f] shadow-form p-4">
+        <form
+            onSubmit={sendCommentHandler}
+            className=" my-8 mx-auto w-full rounded-md bg-[#03be9f] shadow-form p-4"
+        >
             <div className=" flex gap-4 flex-wrap">
                 <div className="mb-2 flex-1 min-w-[10rem]">
                     <label

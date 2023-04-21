@@ -8,23 +8,30 @@
  *
  * Copyright (c) 2023 by 遥在科技, All Rights Reserved.
  */
-
-function CommentList() {
+import { CommentProps } from '@/types'
+interface CommentListProps {
+    comments: CommentProps[]
+}
+function CommentList(prpos: CommentListProps) {
+    const { comments } = prpos
     return (
         <ul className="flex flex-col gap-4">
-            {/* Render list of comments - fetched from API */}
-            <li className=" text-left py-2 px-0  border-b-2 border-solid border-[#ccc]">
-                <p className=" m-0">我的评论太棒了！</p>
-                <div className=" text-right italic">
-                    通过 <address className=" inline">Maximilian</address>
-                </div>
-            </li>
-            <li className=" text-left py-2 px-0  border-b-2 border-solid border-[#ccc]">
-                <p className=" m-0">我的评论太棒了！</p>
-                <div className=" text-right italic">
-                    通过 <address className=" inline">Maximilian</address>
-                </div>
-            </li>
+            {comments.map((comment) => {
+                return (
+                    <li
+                        key={comment.id}
+                        className=" text-left py-2 px-0  border-b-2 border-solid border-[#ccc]"
+                    >
+                        <p className=" m-0">{comment.text}</p>
+                        <div className=" text-right italic">
+                            通过{' '}
+                            <address className=" inline">
+                                {comment.name}
+                            </address>
+                        </div>
+                    </li>
+                )
+            })}
         </ul>
     )
 }
