@@ -8,8 +8,9 @@ export interface EnventProps {
     description: string
 }
 export interface CommentProps {
-    id: string
+    _id: any
     email: string
     name: string
     text: string
+    eventId: string
 }

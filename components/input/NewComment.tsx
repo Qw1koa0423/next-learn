@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-20 16:42:01
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-21 09:37:25
+ * @LastEditTime: 2023-04-21 10:42:17
  * @FilePath: \next-learn\components\input\NewComment.tsx
  * @Description:
  *
@@ -12,7 +12,7 @@ import { useRef, useState } from 'react'
 import { CommentProps } from '@/types'
 
 interface NewCommentProps {
-    onAddComment: (commentData: Omit<CommentProps, 'id'>) => void
+    onAddComment: (commentData: Omit<CommentProps, '_id' | 'eventId'>) => void
 }
 function NewComment(props: NewCommentProps) {
     const { onAddComment } = props

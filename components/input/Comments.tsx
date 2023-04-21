@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-20 16:42:01
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-21 09:36:18
+ * @LastEditTime: 2023-04-21 14:07:53
  * @FilePath: \next-learn\components\input\Comments.tsx
  * @Description:
  *
@@ -18,7 +18,7 @@ interface CommentsProps {
 function Comments(props: CommentsProps) {
     const { eventId } = props
     const [showComments, setShowComments] = useState(false)
-    const [comments, setComments] = useState<CommentProps[]>([])
+    const [comments, setComments] = useState<CommentProps[]>()
     useEffect(() => {
         if (showComments) {
             fetch('/api/comments/' + eventId)
@@ -32,7 +32,9 @@ function Comments(props: CommentsProps) {
         setShowComments((prevStatus) => !prevStatus)
     }
 
-    function addCommentHandler(commentData: Omit<CommentProps, 'id'>) {
+    function addCommentHandler(
+        commentData: Omit<CommentProps, '_id' | 'eventId'>
+    ) {
         // send data to API
         fetch('/api/comments/' + eventId, {
             method: 'POST',
@@ -56,7 +58,7 @@ function Comments(props: CommentsProps) {
                 {showComments ? '隐藏' : '显示'} 评论
             </button>
             {showComments && <NewComment onAddComment={addCommentHandler} />}
-            {showComments && <CommentList comments={comments} />}
+            {showComments && comments && <CommentList comments={comments} />}
         </section>
     )
 }

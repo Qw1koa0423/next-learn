@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-20 16:42:01
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-20 16:54:32
+ * @LastEditTime: 2023-04-21 10:41:01
  * @FilePath: \next-learn\components\input\CommentList.tsx
  * @Description:
  *
@@ -19,7 +19,7 @@ function CommentList(prpos: CommentListProps) {
             {comments.map((comment) => {
                 return (
                     <li
-                        key={comment.id}
+                        key={comment._id}
                         className=" text-left py-2 px-0  border-b-2 border-solid border-[#ccc]"
                     >
                         <p className=" m-0">{comment.text}</p>
