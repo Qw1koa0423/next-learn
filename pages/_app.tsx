@@ -9,22 +9,25 @@
  * Copyright (c) 2023 by 遥在科技, All Rights Reserved.
  */
 import Layout from '@/components/layout/Layout'
+import { NotificationContextProvider } from '@/store/NotificationContext'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <Layout>
-            <Head>
-                <title>下一个事件</title>
-                <meta name="description" content="NextJS Events" />
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-            </Head>
-            <Component {...pageProps} />
-        </Layout>
+        <NotificationContextProvider>
+            <Layout>
+                <Head>
+                    <title>下一个事件</title>
+                    <meta name="description" content="NextJS Events" />
+                    <meta
+                        name="viewport"
+                        content="initial-scale=1.0, width=device-width"
+                    />
+                </Head>
+                <Component {...pageProps} />
+            </Layout>
+        </NotificationContextProvider>
     )
 }

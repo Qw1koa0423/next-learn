@@ -1,9 +1,19 @@
 import { createContext, useState, useEffect } from 'react'
 
-const NotificationContext = createContext({
-    notification: {} || undefined, // { title, message, status }
-    showNotification: function (notificationData: any) {},
-    hideNotification: function () {},
+const NotificationContext = createContext<{
+    notification:
+        | {
+              title: string
+              message: string
+              status: 'success' | 'error' | 'pending'
+          }
+        | undefined
+    showNotification: (notificationData: any) => void
+    hideNotification: () => void
+}>({
+    notification: undefined,
+    showNotification: (notificationData) => {},
+    hideNotification: () => {},
 })
 
 export function NotificationContextProvider(props: {
@@ -11,6 +21,8 @@ export function NotificationContextProvider(props: {
 }) {
     const [activeNotification, setActiveNotification] = useState<{
         status: 'success' | 'error' | 'pending'
+        title: string
+        message: string
     }>()
     const { children } = props
     useEffect(() => {
