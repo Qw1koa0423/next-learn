@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-24 16:21:27
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-25 11:51:22
+ * @LastEditTime: 2023-04-28 17:01:07
  * @FilePath: \next-learn\components\posts\post-detail\PostContent.tsx
  * @Description:
  *
@@ -12,8 +12,13 @@ import { Post } from '@/types'
 import PostHeader from './PostHeader'
 import ReactMarkdown from 'react-markdown'
 import Image from 'next/image'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
+
+SyntaxHighlighter.registerLanguage('js', js)
+SyntaxHighlighter.registerLanguage('css', css)
 export default function PostContent({ post }: { post: Post }) {
     const imagePath = `/images/posts/${post.slug}/${post.image}`
     return (
