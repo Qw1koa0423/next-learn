@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-04-21 17:04:17
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-04-21 17:49:20
+ * @LastEditTime: 2023-04-25 15:39:38
  * @FilePath: \next-learn\tailwind.config.js
  * @Description: 
  * 
@@ -23,8 +23,17 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       boxShadow: {
-        "image": '0 1px 8px rgba(0, 0, 0, 0.2),'
+        "image": '0 1px 8px rgba(0, 0, 0, 0.2)',
+        "li": '0 1px 4px rgba(0, 0, 0, 0.2)',
+        'notification': '0 1px 8px rgba(0, 0, 0, 0.2)'
+      },
+      gridTemplateColumns: {
+        "auto-fill": "repeat(auto-fill, minmax(20rem, 1fr))",
+      },
+      lineHeight: {
+        'initial': 'initial',
       }
+
 
     },
   },

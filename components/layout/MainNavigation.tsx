@@ -16,7 +16,7 @@ export default function MainNavigation() {
                             className=" text-[#dfdbe6] text-base hover:text-[#b2adb8] active:text-[#b2adb8] md:text-xl no-underline"
                             href="/posts"
                         >
-                            邮件
+                            帖子
                         </Link>
                     </li>
                     <li className=" my-0 mx-4">
@@ -24,7 +24,7 @@ export default function MainNavigation() {
                             className=" text-[#dfdbe6] text-base hover:text-[#b2adb8] active:text-[#b2adb8] md:text-xl no-underline"
                             href="/contact"
                         >
-                            联系人
+                            反馈
                         </Link>
                     </li>
                 </ul>
