@@ -33,16 +33,15 @@ export default async function handler(
             message: string
         }
         let client: MongoClient
+        const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.sq1r8eb.mongodb.net/?retryWrites=true&w=majority`
         try {
-            client = await MongoClient.connect(
-                'mongodb+srv://liuhaoqi:rf9zT267K9N9nkoT@next-course.sq1r8eb.mongodb.net/?retryWrites=true&w=majority'
-            )
+            client = await MongoClient.connect(connectionString)
         } catch (error) {
             res.status(500).json({ message: '连接数据库失败!' })
             return
         }
         try {
-            const db = client.db('blog')
+            const db = client.db(process.env.mongodb_database)
 
             const result = await db.collection('messages').insertOne(newMessage)
             newMessage._id = result.insertedId
