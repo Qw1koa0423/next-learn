@@ -1,8 +1,8 @@
 /*
  * @Author: 刘浩奇 liuhaoqw1ko@gmail.com
  * @Date: 2023-05-04 23:14:27
- * @LastEditors: 刘浩奇 liuhaoqw1ko@gmail.com
- * @LastEditTime: 2023-05-05 00:46:44
+ * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
+ * @LastEditTime: 2023-05-30 16:23:01
  * @FilePath: \next-learn\pages\_app.tsx
  * @Description:
  *
@@ -10,11 +10,17 @@
  */
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { SessionProvider } from 'next-auth/react'
 import Layout from '@/components/layout/Layout'
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+    Component,
+    pageProps: { session, ...pageProps },
+}: AppProps) {
     return (
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        <SessionProvider session={session}>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </SessionProvider>
     )
 }
