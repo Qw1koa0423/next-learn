@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-05-31 17:44:37
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-06-01 16:55:05
+ * @LastEditTime: 2023-06-01 17:05:26
  * @FilePath: \next-learn\pages\[meetupId]\index.tsx
  * @Description:
  *
@@ -44,7 +44,7 @@ export async function getStaticPaths() {
     // console.log(meetups)
     client.close()
     return {
-        fallback: false,
+        fallback: 'blocking',
         paths: meetups.map((meetup) => ({
             params: {
                 meetupId: meetup._id.toString(),
