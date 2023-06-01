@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-05-31 17:43:00
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-06-01 10:06:57
+ * @LastEditTime: 2023-06-01 16:54:26
  * @FilePath: \next-learn\components\meetups\MeetupDetail.tsx
  * @Description:
  *
@@ -23,7 +23,7 @@ function MeetupDetail(props: {
                 alt={title}
                 width={800}
                 height={600}
-                className=" w-full"
+                className="w-full"
             />
             <h1>{title}</h1>
             <address>{address}</address>

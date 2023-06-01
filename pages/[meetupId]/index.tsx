@@ -2,7 +2,7 @@
  * @Author: 刘浩奇 liuhaoqi@yaozai.net
  * @Date: 2023-05-31 17:44:37
  * @LastEditors: 刘浩奇 liuhaoqi@yaozai.net
- * @LastEditTime: 2023-06-01 16:15:21
+ * @LastEditTime: 2023-06-01 16:55:05
  * @FilePath: \next-learn\pages\[meetupId]\index.tsx
  * @Description:
  *
@@ -26,10 +26,7 @@ const MeetupDetailsPage = (props: {
         <>
             <Head>
                 <title>{meetupData.title}</title>
-      <meta
-        name="description"
-        content={meetupData.description}
-      />
+                <meta name="description" content={meetupData.description} />
             </Head>
             <MeetupDetail {...meetupData} />
         </>
@@ -47,7 +44,7 @@ export async function getStaticPaths() {
     // console.log(meetups)
     client.close()
     return {
-        fallback: true,
+        fallback: false,
         paths: meetups.map((meetup) => ({
             params: {
                 meetupId: meetup._id.toString(),
